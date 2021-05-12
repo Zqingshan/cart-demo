@@ -18,7 +18,6 @@ public class DetailServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 获取id
         String id = request.getParameter("id");
-        // 添加历史足迹
         List<Product> products = (List<Product>) getServletContext().getAttribute("products");
         for (Product product : products) {
             if (id.equals(product.getId())) {

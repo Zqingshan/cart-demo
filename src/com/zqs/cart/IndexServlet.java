@@ -35,6 +35,7 @@ public class IndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // 在首页展示商品
         List<Product> products = (List<Product>) getServletContext().getAttribute("products");
+        response.getWriter().println("<h1 align='center'>商品首页</h1>");
         for (Product product : products) {
             String detail = response.encodeURL(request.getContextPath() + "/detail?id=" + product.getId());
             response.getWriter().println("<a href='" + detail + "'>" + product.getName() + "</a><br>");

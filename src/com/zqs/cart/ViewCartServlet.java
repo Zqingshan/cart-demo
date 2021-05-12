@@ -16,12 +16,13 @@ public class ViewCartServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String index = response.encodeURL(request.getContextPath() + "/index");
         HttpSession session = request.getSession();
         List<String> cart = (List<String>) session.getAttribute("cart");
         // 如果购物车为空
         if (cart == null) {
             response.getWriter().println("<h1>当前购物车没有商品,先去添加商品吧~~~</h1>");
-            response.getWriter().println("<a href='" + request.getContextPath() + "/index" + "'>返回首页</a><br><br>");
+            response.getWriter().println("<a href='" + index + "'>返回首页</a><br><br>");
         }
         List<Product> products = (List<Product>) getServletContext().getAttribute("products");
         for (String id : cart) {
@@ -31,7 +32,6 @@ public class ViewCartServlet extends HttpServlet {
                 }
             }
         }
-        String index = response.encodeURL(request.getContextPath() + "/index");
         response.getWriter().println("<br><a href='" + index + "'>返回首页</a><br>");
     }
 }
